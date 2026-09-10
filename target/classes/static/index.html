@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic Connect - Smart Municipal Platform</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="bg-light">
+
+    <!-- Top Alert Banner -->
+    <div class="bg-primary text-white text-center py-2 px-3 small fw-medium">
+        <i class="bi bi-megaphone-fill me-2"></i> Live City Alert: Emergency response team dispatched for Ward 101 storm drain maintenance.
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark civic-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-building-gear text-primary fs-3 me-2"></i>
+                <span>Civic<span class="text-primary">Connect</span></span>
+            </a>
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-light btn-sm px-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Login
+                </button>
+                <button class="btn btn-primary btn-sm px-3" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    <i class="bi bi-person-plus me-1"></i> Register
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-5 bg-dark text-white text-center position-relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <span class="badge bg-primary-subtle text-primary border border-primary px-3 py-2 rounded-pill mb-3">
+                        <i class="bi bi-shield-check me-1"></i> Official City Governance Portal
+                    </span>
+                    <h1 class="display-4 fw-extrabold mb-3">Empowering Citizens. Restoring Cities.</h1>
+                    <p class="lead text-secondary mb-4">Report civic issues, track real-time resolution timelines, and collaborate with municipal officers to keep our neighborhood safe and clean.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            Get Started as Citizen
+                        </button>
+                        <button class="btn btn-outline-light btn-lg px-4" onclick="demoLogin('citizen')">
+                            Quick Demo Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Role Quick Access Cards -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Role-Based Access Portals</h2>
+                <p class="text-muted">Select your persona to explore the interactive prototype features.</p>
+            </div>
+            <div class="row g-4">
+                <!-- Citizen Card -->
+                <div class="col-md-4">
+                    <div class="card civic-card h-100 p-4 text-center">
+                        <div class="display-5 text-primary mb-3"><i class="bi bi-person-raised-hand"></i></div>
+                        <h4 class="fw-bold">Citizen Portal</h4>
+                        <p class="text-muted small">Submit geotagged complaints with photo proof, track SLA deadlines, and verify resolution progress.</p>
+                        <button class="btn btn-outline-primary mt-auto" onclick="demoLogin('citizen')">Demo Citizen Access</button>
+                    </div>
+                </div>
+                <!-- Officer Card -->
+                <div class="col-md-4">
+                    <div class="card civic-card h-100 p-4 text-center">
+                        <div class="display-5 text-warning mb-3"><i class="bi bi-person-workspace"></i></div>
+                        <h4 class="fw-bold">Officer Workstation</h4>
+                        <p class="text-muted small">Manage department queues, accept assigned tasks, update work progression, and upload fix proof.</p>
+                        <button class="btn btn-outline-warning mt-auto text-dark" onclick="demoLogin('officer')">Demo Officer Access</button>
+                    </div>
+                </div>
+                <!-- Admin Card -->
+                <div class="col-md-4">
+                    <div class="card civic-card h-100 p-4 text-center">
+                        <div class="display-5 text-success mb-3"><i class="bi bi-speedometer2"></i></div>
+                        <h4 class="fw-bold">Admin Analytics</h4>
+                        <p class="text-muted small">System-wide KPI metrics, Chart.js category breakdown, ward performance, and SLA escalations.</p>
+                        <button class="btn btn-outline-success mt-auto" onclick="demoLogin('admin')">Demo Admin Access</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-header-title fw-bold m-0"><i class="bi bi-shield-lock me-2"></i> Account Login</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Username</label>
+                            <input type="text" id="loginUsername" class="form-control" placeholder="e.g. citizen_john" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Password</label>
+                            <input type="password" id="loginPassword" class="form-control" value="password123" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Login to Dashboard</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-header-title fw-bold m-0"><i class="bi bi-person-plus me-2"></i> Register New User</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Full Name</label>
+                            <input type="text" id="regFullName" class="form-control" required placeholder="John Doe">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Username</label>
+                            <input type="text" id="regUsername" class="form-control" required placeholder="john_doe">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Email</label>
+                            <input type="email" id="regEmail" class="form-control" required placeholder="john@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Password</label>
+                            <input type="password" id="regPassword" class="form-control" required value="password123">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Account Role</label>
+                            <select id="regRole" class="form-select">
+                                <option value="ROLE_CITIZEN">Citizen</option>
+                                <option value="ROLE_OFFICER">Municipal Officer</option>
+                                <option value="ROLE_ADMIN">City Administrator</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 fw-bold py-2">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const u = document.getElementById('loginUsername').value;
+            const p = document.getElementById('loginPassword').value;
+            try {
+                const user = await window.CivicApi.login(u, p);
+                window.CivicAuth.redirectUserByRole(user.role);
+            } catch (err) {
+                alert('Login failed: ' + err.message);
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                fullName: document.getElementById('regFullName').value,
+                username: document.getElementById('regUsername').value,
+                email: document.getElementById('regEmail').value,
+                password: document.getElementById('regPassword').value,
+                role: document.getElementById('regRole').value
+            };
+            try {
+                await window.CivicApi.register(data);
+                alert('Registration successful! Logging you in...');
+                const user = await window.CivicApi.login(data.username, data.password);
+                window.CivicAuth.redirectUserByRole(user.role);
+            } catch (err) {
+                alert('Registration error: ' + err.message);
+            }
+        });
+
+        async function demoLogin(type) {
+            let username = 'citizen_john';
+            if (type === 'officer') username = 'officer_smith';
+            if (type === 'admin') username = 'admin_super';
+
+            const user = await window.CivicApi.login(username, 'password123');
+            window.CivicAuth.redirectUserByRole(user.role);
+        }
+    </script>
+</body>
+</html>
